@@ -4,7 +4,8 @@ import fgShader from "./fragment.glsl?raw";
 
 // learn this: https://gamedev.stackexchange.com/questions/153078/what-can-i-do-with-the-4th-component-of-gl-position
 // https://open.gl/transformations
-
+// 1. https://www.youtube.com/watch?v=kB0ZVUrI4Aw
+// 2. https://www.youtube.com/watch?v=3yLL9ADo-ko
 export const drawCube = (
   gl: WebGL2RenderingContext,
   width: number,
