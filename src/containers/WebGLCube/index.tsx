@@ -30,7 +30,7 @@ const WebGLCube: FC<WebGLCubeProps> = () => {
 
   return (
     <div className={styles.wrapper}>
-      <canvas width="400" height="400" ref={canvas} className={styles.canvas} />
+      <canvas width="600" height="400" ref={canvas} className={styles.canvas} />
     </div>
   );
 };

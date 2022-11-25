@@ -3,6 +3,7 @@ varying vec4 v_positionWithOffset;
 
 uniform float slide;
 uniform vec4 rotation;
+uniform float aspect;
 
 void main(){
   mat4 rotateX=mat4(
@@ -26,8 +27,10 @@ void main(){
     0,0,0,1
   );
   
-  vec4 scale=vec4(vec3(slide*slide*.2).xyz,1);
+  vec4 scale=vec4(vec3(slide),1);
+  vec4 aspectRatioFix=vec4(aspect,vec3(1));
   
-  gl_Position=rotateZ*rotateX*rotateY*aVertexPosition*scale,
+  gl_Position=rotateZ*rotateX*rotateY*aVertexPosition*scale*aspectRatioFix,
+  
   v_positionWithOffset=gl_Position+vec4(1,1,1,1);
 }

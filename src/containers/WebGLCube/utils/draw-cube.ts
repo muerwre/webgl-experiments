@@ -11,11 +11,9 @@ export const drawCube = (
   width: number,
   height: number
 ) => {
-  let interval = 0;
-
   // Initializing viewport
   gl.viewport(0, 0, width, height);
-  gl.clearColor(0, 0.5, 0, 1);
+  gl.clearColor(0, 0, 0, 0);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   const prg = gl.createProgram();
@@ -63,7 +61,7 @@ export const drawCube = (
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 
   // drawing
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(0.0, 0.0, 0.0, 0.0);
   gl.enable(gl.DEPTH_TEST);
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -73,15 +71,17 @@ export const drawCube = (
   gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
   gl.enableVertexAttribArray(vertexPosition);
 
-  let a = 1;
+  let i = 0;
   let speed = 0.01;
 
   const draw = () => {
     gl.useProgram(prg);
 
-    const angle = a * 4;
+    const angle = i * 3.14;
+    const scale = i * 0.25 + 0.25;
 
-    gl.uniform1f(gl.getUniformLocation(prg, "slide"), a);
+    gl.uniform1f(gl.getUniformLocation(prg, "slide"), scale);
+    gl.uniform1f(gl.getUniformLocation(prg, "aspect"), height / width);
     gl.uniform4fv(gl.getUniformLocation(prg, "rotation"), [
       Math.cos(angle),
       -Math.sin(angle),
@@ -92,11 +92,11 @@ export const drawCube = (
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, squareIndexBuffer);
     gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
 
-    if (a > 2 || a < 1) {
+    if (i > 1 || i < 0) {
       speed = -speed;
     }
 
-    a += speed;
+    i += speed;
   };
 
   return draw;
