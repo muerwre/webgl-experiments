@@ -1,0 +1,12 @@
+.wrapper {
+  width: 400px;
+  margin: auto;
+  display: grid;
+  gap: 10px;
+}
+
+.canvas {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #{transparentize(black, 0.5)};
+}
