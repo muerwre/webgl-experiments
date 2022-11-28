@@ -74,7 +74,7 @@ export const drawCube = (
   let i = 0;
   let speed = 0.01;
 
-  const draw = () => {
+  return () => {
     gl.useProgram(prg);
 
     const angle = i * 3.14;
@@ -98,6 +98,4 @@ export const drawCube = (
 
     i += speed;
   };
-
-  return draw;
 };
